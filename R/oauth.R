@@ -8,7 +8,8 @@ registerTwitterOAuth <- function(oauth) {
 
 check_twitter_oauth = function() {
   req = try(stop_for_status(GET("https://api.twitter.com/1.1/account/settings.json", 
-                                config(token=get_oauth_sig()))), silent=TRUE)
+                                config(token=get_oauth_sig()))), silent=FALSE)
+  print(req)
   
   if (inherits(req, "try-error")) {
     stop("OAuth authentication error:\nThis most likely means that you have incorrectly called setup_twitter_oauth()'")
